@@ -18,7 +18,10 @@ namespace PyramidPanic
         private PyramidPanic game;
         
         //maak een variable (reference) aan van de Image class genaamd background
-        private Image background, title; 
+        private Image background, title;
+
+        //Maak een variable (reference) aan van de Menu class genaamd menu
+        private Menu menu;
 
         // Constructor van de StartScene-class krijgt een object game mee van het type PyramidPanic
         public StartScene(PyramidPanic game)
@@ -43,20 +46,15 @@ namespace PyramidPanic
             //Nu maken we twee object (instantie) van de class Image
             this.background = new Image(this.game, @"Startscene\Background", new Vector2(0f, 0f));
             this.title = new Image(this.game, @"Startscene\Title",new Vector2(100f, 30f));
+            this.menu = new Menu(this.game);
         }
 
         // Update methode. Deze methode wordt normaal 60 maal per seconde aangeroepen.
         // en update alle variabelen, methods enz.......
         public void Update(GameTime gameTime)
         {
-            if (Input.EdgeDetectKeyDown(Keys.Right) || Input.EdgeDetectMousePressLeft())
-            {
-                this.game.IState = this.game.PlayScene;
-            }
-            if (Input.EdgeDetectKeyDown(Keys.Left))
-            {
-                this.game.IState = this.game.GameOverScene;
-            }
+            this.menu.update(gameTime);
+       
         }
 
         // Draw methode. Deze methode wordt normaal 60 maal per seconde aangeroepen en
@@ -64,8 +62,14 @@ namespace PyramidPanic
         public void Draw(GameTime gameTime)
         {
             this.game.GraphicsDevice.Clear(Color.Purple);
+            //roep de draw method aan van het background object
             this.background.Draw(gameTime);
+
+            //roep de draw method aan van het title object
             this.title.Draw(gameTime);
+
+            //roep de draw method aan van het method subject
+            this.menu.draw(gameTime);
         }
     }
 }
