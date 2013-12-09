@@ -71,7 +71,12 @@ namespace PyramidPanic
         public GameOverScene GameOverScene
         {
             get { return this.gameOverScene; }
-        } 
+        }
+
+        public SpriteBatch SpriteBatch
+        {
+            get { return this.spriteBatch; }
+        }
         #endregion
 
         //Dit is de constructor. Heeft altijd dezelfde naam als de class.
